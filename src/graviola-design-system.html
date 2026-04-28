@@ -1,0 +1,2448 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Graviola Design System</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Montserrat:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Lilita One';
+      src: url('./fonts/LilitaOne-Regular.ttf') format('truetype');
+      font-weight: 400;
+    }
+
+    @font-face {
+      font-family: 'Montserrat';
+      src: url('./fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
+      font-weight: 100 900;
+    }
+
+    @font-face {
+      font-family: 'Montserrat';
+      src: url('./fonts/Montserrat-Italic-VariableFont_wght.ttf') format('truetype');
+      font-weight: 100 900;
+      font-style: italic;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #F2E8DF;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .page {
+      width: 1200px;
+      min-height: 400px;
+      margin: 0 auto 32px;
+      background: #FFF4E9;
+      border-radius: 0;
+      overflow: hidden;
+      page-break-after: always;
+    }
+
+    .page-header {
+      background: #562D2A;
+      padding: 10px 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .page-header .section-tag {
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 244, 233, 0.5);
+    }
+
+    .page-header .section-title {
+      font-family: 'Lilita One', cursive;
+      font-size: 18px;
+      color: #FFD05D;
+      letter-spacing: 0.01em;
+    }
+
+    .page-body {
+      padding: 28px 32px;
+    }
+
+    /* ──────────────────────────── COLORS PRIMARY */
+    .swatches {
+      display: flex;
+      gap: 10px;
+      height: 140px;
+    }
+
+    .swatch {
+      flex: 1;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 12px;
+    }
+
+    .swatch .hex {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      opacity: 0.85;
+      font-family: monospace;
+    }
+
+    .swatch .name {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      margin-bottom: 2px;
+    }
+
+    .light {
+      color: #1A0A08;
+    }
+
+    .dark {
+      color: #FFF4E9;
+    }
+
+    .row2 {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .swatch-sm {
+      flex: 1;
+      height: 40px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    /* ──────────────────────────── COLORS ALT */
+    .group {
+      margin-bottom: 16px;
+    }
+
+    .group-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #5A4A30;
+      margin-bottom: 8px;
+    }
+
+    .alt-row {
+      display: flex;
+      gap: 10px;
+      height: 60px;
+    }
+
+    .alt-swatch {
+      flex: 1;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 8px;
+    }
+
+    /* ──────────────────────────── SEMANTIC TOKENS */
+    .tokens {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .token {
+      border-radius: 8px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .token-name {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .token-val {
+      font-size: 9px;
+      opacity: 0.7;
+      font-family: monospace;
+      font-weight: 600;
+    }
+
+    /* ──────────────────────────── TYPOGRAPHY */
+    .ty-row {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #E5D0B4;
+      padding-bottom: 10px;
+    }
+
+    .ty-row:last-child {
+      border-bottom: none;
+    }
+
+    .ty-meta {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: #B09090;
+      text-transform: uppercase;
+      width: 110px;
+      flex-shrink: 0;
+    }
+
+    .ty-specimen {
+      color: #562D2A;
+    }
+
+    .label-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #8A5A56;
+      margin-bottom: 10px;
+    }
+
+    /* ──────────────────────────── BUTTONS */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      white-space: nowrap;
+    }
+
+    .btn-cta {
+      font-family: 'Lilita One', cursive;
+      letter-spacing: 0.04em;
+    }
+
+    .btn-primary {
+      background: #FF7838;
+      color: #FFF4E9;
+      border-radius: 9999px;
+      padding: 13px 28px;
+      font-size: 14px;
+      box-shadow: 4px 4px 0 #562D2A;
+      border: 2px solid #562D2A;
+    }
+
+    .btn-green {
+      background: #43A574;
+      color: #FFF4E9;
+      border-radius: 9999px;
+      padding: 13px 28px;
+      font-size: 14px;
+      box-shadow: 4px 4px 0 #26481C;
+      border: 2px solid #26481C;
+    }
+
+    .btn-yellow {
+      background: #FFD05D;
+      color: #562D2A;
+      border-radius: 9999px;
+      padding: 13px 28px;
+      font-size: 14px;
+      box-shadow: 4px 4px 0 #D4A020;
+      border: 2px solid #D4A020;
+    }
+
+    .btn-blue {
+      background: #89C0FF;
+      color: #562D2A;
+      border-radius: 9999px;
+      padding: 13px 28px;
+      font-size: 14px;
+      box-shadow: 4px 4px 0 #4A8ED4;
+      border: 2px solid #4A8ED4;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #FF7838;
+      border-radius: 9999px;
+      padding: 12px 28px;
+      font-size: 14px;
+      border: 2px solid #FF7838;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: #562D2A;
+      border-radius: 9999px;
+      padding: 12px 28px;
+      font-size: 14px;
+      border: 2px dashed #A07860;
+    }
+
+    .btn-sm {
+      padding: 8px 18px;
+      font-size: 11px;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .sublabel {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #C4A08A;
+      margin: 10px 0 6px;
+    }
+
+    /* ──────────────────────────── BADGES */
+    .pill {
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 9999px;
+      border: 2px solid;
+      white-space: nowrap;
+    }
+
+    .washi-tape {
+      font-weight: 700;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      display: inline-block;
+    }
+
+    .stamp {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 3px dashed;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8px;
+      flex-shrink: 0;
+    }
+
+    .stamp .s-top {
+      font-size: 7px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .stamp .s-main {
+      font-family: 'Lilita One', cursive;
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .stamp .s-sub {
+      font-size: 7px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .hex-badge {
+      width: 72px;
+      height: 80px;
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    /* ──────────────────────────── SPACING */
+    .track {
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+    }
+
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .bar {
+      background: #FF7838;
+      border-radius: 3px;
+      width: 22px;
+    }
+
+    .step-label {
+      font-size: 9px;
+      font-weight: 700;
+      color: #562D2A;
+    }
+
+    .step-val {
+      font-size: 9px;
+      color: #8A5A56;
+    }
+
+    .shadow-row {
+      display: flex;
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .shadow-box {
+      width: 70px;
+      height: 44px;
+      background: #FFF4E9;
+      border: 1.5px solid #E5D0B4;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .shadow-label {
+      font-size: 9px;
+      font-weight: 700;
+      color: #562D2A;
+    }
+
+    /* ──────────────────────────── LOGO */
+    .logo-row {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #8A5A56;
+    }
+
+    .v-divider {
+      width: 1px;
+      height: 100px;
+      background: #E5D0B4;
+    }
+
+    /* ──────────────────────────── PATCHES */
+    .patches-row {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .patch-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .patch-label {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 244, 233, 0.35);
+      white-space: nowrap;
+    }
+
+    /* ──────────────────────────── CARDS */
+    .cards-bg {
+      background: #1A0E0E;
+      padding: 24px 32px;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      width: 220px;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-evento {
+      background: #FFF4E9;
+      border: 2.5px solid #562D2A;
+      border-radius: 12px;
+      box-shadow: 5px 5px 0 #562D2A;
+    }
+
+    .card-evento .top-stripe {
+      background: #FF7838;
+      padding: 9px 13px 7px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-evento .tile-strip {
+      display: flex;
+      height: 38px;
+      overflow: hidden;
+    }
+
+    .card-evento .tile-strip .t {
+      flex: 1;
+      background-size: cover;
+      background-position: center top;
+    }
+
+    .card-evento .body {
+      padding: 11px 13px 13px;
+    }
+
+    .card-evento .pretag {
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #FF7838;
+      margin-bottom: 5px;
+    }
+
+    .card-evento .venue {
+      font-size: 12px;
+      font-weight: 700;
+      color: #562D2A;
+      line-height: 1.3;
+      margin-bottom: 9px;
+    }
+
+    .card-evento .date-badge {
+      background: #FFD05D;
+      color: #562D2A;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 9999px;
+      padding: 5px 13px;
+      display: inline-block;
+      border: 2px solid #D4A020;
+      box-shadow: 2px 2px 0 #562D2A;
+    }
+
+    .card-evento .bottom-washi {
+      background: #FFD05D;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 7px 13px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card-evento .stamp {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 2px dashed #FFD05D;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .card-evento .stamp span {
+      font-size: 5px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #FFD05D;
+      line-height: 1.2;
+    }
+
+    .card-evento .stamp strong {
+      font-family: 'Lilita One', cursive;
+      font-size: 11px;
+      color: #FFF4E9;
+      line-height: 1;
+    }
+
+    .card-dark {
+      background: #3B1A18;
+      border: 2.5px solid #562D2A;
+      border-radius: 12px;
+    }
+
+    .card-dark .green-bar {
+      background: #2D5A1E;
+      padding: 9px 13px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #1A3A10;
+    }
+
+    .card-dark .body {
+      padding: 15px 13px 13px;
+    }
+
+    .card-dark .title {
+      font-family: 'Lilita One', cursive;
+      font-size: 46px;
+      color: #FFF4E9;
+      line-height: 0.88;
+      letter-spacing: -0.01em;
+      margin-bottom: 9px;
+    }
+
+    .card-dark .title span {
+      color: #FFD05D;
+    }
+
+    .card-dark .sub {
+      font-size: 10px;
+      font-weight: 600;
+      color: rgba(255, 244, 233, 0.6);
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
+
+    .card-dark .cta {
+      background: #FF7838;
+      color: #FFF4E9;
+      font-family: 'Lilita One', cursive;
+      font-size: 15px;
+      letter-spacing: 0.04em;
+      border: 2px solid #D45A20;
+      border-radius: 9999px;
+      padding: 8px 20px;
+      display: inline-block;
+      box-shadow: 3px 3px 0 #562D2A;
+      cursor: pointer;
+    }
+
+    .card-dark .deco-strip {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 28px;
+      overflow: hidden;
+      opacity: 0.25;
+    }
+
+    .card-dark .deco-strip img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-dark .green-bar {
+      background: #2D5A1E;
+      padding: 9px 13px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #1A3A10;
+    }
+
+    .card-dark .green-bar .label-sm {
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #FFF4E9;
+    }
+
+    .card-dark .green-bar .badge {
+      background: #FFD05D;
+      color: #562D2A;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      border: 1.5px solid #D4A020;
+    }
+
+    .card-dark .logo-patch-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 13px 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card-dark .patch-img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      filter: drop-shadow(1px 3px 8px rgba(0,0,0,0.5));
+    }
+
+    /* ── CARD Torn Paper ───────────────────────── */
+    .card-torn {
+      background: #FFF4E9;
+      border: 2px solid #562D2A;
+      clip-path: polygon(0 0,100% 0,100% 91%,97% 86%,94% 91%,91% 85%,88% 91%,85% 86%,82% 91%,79% 86%,76% 90%,73% 85%,70% 91%,67% 85%,64% 90%,61% 85%,58% 91%,55% 86%,52% 91%,49% 86%,46% 90%,43% 85%,40% 91%,37% 86%,34% 91%,31% 86%,28% 90%,25% 85%,22% 91%,19% 86%,16% 91%,13% 85%,10% 91%,7% 85%,4% 90%,1% 85%,0 90%);
+    }
+
+    .card-torn .logo-area {
+      padding: 8px 12px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-torn .patch-corner {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      width: 52px;
+      height: 52px;
+    }
+
+    .card-torn .patch-corner img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(1px 2px 6px rgba(0,0,0,0.2));
+    }
+
+    .card-torn .washi-top {
+      background: #FF7838;
+      color: #FFF4E9;
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      transform: rotate(-1.5deg);
+      margin: 8px 0 0 -4px;
+      display: inline-block;
+    }
+
+    .card-torn .body {
+      padding: 4px 14px 32px;
+    }
+
+    .card-torn .pre {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #8A5A56;
+      margin-bottom: 4px;
+      margin-top: 8px;
+    }
+
+    .card-torn .title {
+      font-family: 'Lilita One', cursive;
+      font-size: 28px;
+      color: #D63C2F;
+      line-height: 0.95;
+      margin-bottom: 10px;
+    }
+
+    .card-torn .values {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .card-torn .val {
+      font-size: 9px;
+      font-weight: 600;
+      color: #562D2A;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .card-torn .val::before {
+      content: '✦';
+      color: #FF7838;
+      font-size: 8px;
+    }
+
+    .card-torn .tile-corner {
+      position: absolute;
+      bottom: 24px;
+      right: 0;
+      width: 44px;
+      height: 88px;
+      overflow: hidden;
+      opacity: 0.8;
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* ── CARD Produto ────────────────────────── */
+    .card-produto {
+      border: 2.5px solid #562D2A;
+      border-radius: 12px;
+      box-shadow: 5px 5px 0 #562D2A;
+      overflow: hidden;
+      background: #FFF4E9;
+    }
+
+    .card-produto .photo {
+      height: 110px;
+      overflow: hidden;
+      position: relative;
+      background: #F2E8DF;
+    }
+
+    .card-produto .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center bottom;
+    }
+
+    .card-produto .patch-overlay {
+      position: absolute;
+      bottom: -10px;
+      right: 6px;
+      width: 56px;
+      height: 56px;
+      z-index: 3;
+    }
+
+    .card-produto .patch-overlay img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(1px 2px 8px rgba(0,0,0,0.3));
+    }
+
+    .card-produto .photo::after {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      border: 2px dashed rgba(86,45,42,0.3);
+      border-radius: 8px;
+      pointer-events: none;
+    }
+
+    .card-produto .photo .pattern-bg {
+      position: absolute;
+      inset: 0;
+      opacity: 0.12;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .card-produto .washi {
+      background: #89C0FF;
+      color: #562D2A;
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      transform: rotate(-1deg);
+      margin-left: -4px;
+      display: inline-block;
+      margin-top: 4px;
+    }
+
+    .card-produto .footer {
+      background: #562D2A;
+      padding: 10px 12px;
+    }
+
+    .card-produto .footer .ftag {
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #FFD05D;
+      margin-bottom: 3px;
+    }
+
+    .card-produto .footer .ftitle {
+      font-family: 'Lilita One', cursive;
+      font-size: 18px;
+      color: #FFF4E9;
+      line-height: 1;
+    }
+
+    .card-produto .footer .fsub {
+      font-size: 8px;
+      font-weight: 600;
+      color: rgba(255,244,233,0.6);
+      margin-top: 4px;
+    }
+
+    .card-produto .footer .fbtn {
+      background: #FF7838;
+      color: #FFF4E9;
+      font-family: 'Lilita One', cursive;
+      font-size: 11px;
+      border: 1.5px solid #D45A20;
+      border-radius: 9999px;
+      padding: 4px 12px;
+      display: inline-block;
+      margin-top: 8px;
+      box-shadow: 2px 2px 0 #3B1A18;
+    }
+
+    /* ──────────────────────────── TEXTURES */
+    .bg-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .bg-tile {
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      flex: 1;
+      height: 80px;
+      border: 1.5px solid #E5D0B4;
+    }
+
+    .bg-tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .bg-tile-label {
+      position: absolute;
+      bottom: 6px;
+      left: 8px;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.9);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    }
+
+    .tex-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .tex-tile {
+      border-radius: 8px;
+      overflow: hidden;
+      flex: 1;
+      height: 60px;
+      border: 1.5px solid #E5D0B4;
+      position: relative;
+    }
+
+    .tex-tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .washi-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .washi-strip {
+      flex: 1;
+      height: 26px;
+      border-radius: 3px;
+    }
+
+    /* ──────────────────────────── DOS DONTS */
+    .dd-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .dd-col {
+      border-radius: 10px;
+      padding: 18px;
+    }
+
+    .dd-col-label {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .dd-rule {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 9px;
+    }
+
+    .dd-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+
+    .dd-text {
+      font-size: 11px;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    /* ──────────────────────────── BRAND VOICE */
+    .voice-frame {
+      background: #562D2A;
+      padding: 32px 36px;
+      display: flex;
+      gap: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .voice-frame::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('./assets/pattern_repeat.png');
+      background-size: 80px;
+      opacity: 0.06;
+    }
+
+    .voice-left {
+      position: relative;
+      z-index: 2;
+      width: 180px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .voice-eyebrow {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #FF7838;
+      margin-bottom: 8px;
+    }
+
+    .voice-title {
+      font-size: 40px;
+      font-weight: 800;
+      color: #FFD05D;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .voice-right {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .voice-principle {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .voice-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #FF7838;
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+
+    .voice-text {
+      font-size: 12px;
+      color: rgba(255, 244, 233, 0.85);
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    .voice-text strong {
+      color: #FFD05D;
+      font-weight: 700;
+    }
+
+    /* ──────────────────────────── SOCIAL */
+    .social-bg {
+      background: #321818;
+      padding: 24px 32px;
+    }
+
+    .social-row {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .post-frame {
+      flex-shrink: 0;
+    }
+
+    .post-header {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 4px;
+    }
+
+    .post-avatar {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #FF7838;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .post-handle {
+      font-size: 9px;
+      font-weight: 700;
+      color: rgba(255, 244, 233, 0.5);
+    }
+
+    .post-img {
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1.5px solid rgba(255, 244, 233, 0.1);
+    }
+
+    .post-img img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .post-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 5px;
+    }
+
+    .post-action {
+      font-size: 9px;
+      color: rgba(255, 244, 233, 0.35);
+      font-weight: 600;
+    }
+
+    /* ──────────────────────────── PATTERN TILES */
+    .tiles-group {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      flex-shrink: 0;
+    }
+
+    .tile-block-p {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .tile-p {
+      width: 64px;
+      height: 128px;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1.5px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.12);
+    }
+
+    .tile-p img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .tile-label-p {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #8A5A56;
+      white-space: nowrap;
+    }
+
+    /* ──────────────────────────── BRAND APPS */
+    .app-grid {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: flex-end;
+    }
+
+    .app-block {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      flex-shrink: 0;
+      align-items: center;
+    }
+
+    .app-img {
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1.5px solid #E5D0B4;
+    }
+
+    .app-img img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .app-label {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #8A5A56;
+      text-align: center;
+    }
+
+    /* ──────────────────────────── SOCIAL BASE */
+    .social-base-bg {
+      background: #562D2A;
+      padding: 24px 32px;
+    }
+
+    .templates-row {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .t-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .t-img {
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1.5px solid rgba(255, 244, 233, 0.15);
+    }
+
+    .t-img img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .t-label {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255, 244, 233, 0.35);
+    }
+
+    /* Cover page */
+    .cover {
+      background: #321818;
+      min-height: 340px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 60px;
+    }
+
+    .cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('./assets/pattern_repeat.png');
+      background-size: 100px;
+      opacity: 0.05;
+    }
+
+    .cover-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .cover-tag {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #FF7838;
+      margin-bottom: 12px;
+    }
+
+    .cover-title {
+      font-family: 'Lilita One', cursive;
+      font-size: 96px;
+      color: #FFF4E9;
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+    }
+
+    .cover-sub {
+      font-family: 'Lilita One', cursive;
+      font-size: 36px;
+      color: #FFD05D;
+      margin-top: 8px;
+    }
+
+    .cover-desc {
+      font-size: 13px;
+      color: rgba(255, 244, 233, 0.55);
+      margin-top: 16px;
+      line-height: 1.6;
+      max-width: 500px;
+    }
+
+    .cover-washi {
+      background: #FF7838;
+      color: #FFF4E9;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 7px 24px;
+      display: inline-block;
+      margin-top: 24px;
+    }
+  </style>
+
+  <template id="__bundler_thumbnail">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 56">
+      <rect width="80" height="56" fill="#321818" />
+      <rect x="16" y="10" width="48" height="36" rx="4" fill="#FF7838" />
+      <text x="40" y="32" font-family="serif" font-size="14" fill="#FFF4E9" text-anchor="middle"
+        font-weight="bold">G</text>
+    </svg>
+  </template>
+
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════ CAPA ══════════════════════════════ -->
+  <div class="page" style="background:#321818;">
+    <div class="cover">
+      <div class="cover-content">
+        <div class="cover-tag">✦ Graviola Feira Musical · Salvador, Bahia ✦</div>
+        <div class="cover-title">Graviola</div>
+        <div class="cover-sub">Design System</div>
+        <div class="cover-desc">Guia completo de identidade visual — cores, tipografia, componentes, padrões e voz da
+          marca.</div>
+        <div class="cover-washi">✦ 2026 Edition ✦</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════ LOGO ══════════════════════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <span class="section-tag">Brand</span>
+      <span class="section-title">Logo & Identidade</span>
+    </div>
+    <div class="page-body">
+      <div class="logo-row">
+        <div class="logo-block">
+          <img src="./assets/logo.png" alt="Graviola wordmark" style="height:90px; object-fit:contain;">
+          <div class="logo-label">Principal</div>
+        </div>
+        <div class="v-divider"></div>
+        <div class="logo-block">
+          <div style="background:#562D2A; padding:16px 20px; border-radius:12px;">
+            <img src="./assets/logo.png" alt="Graviola wordmark"
+              style="height:70px; object-fit:contain; filter:brightness(0) invert(1);">
+          </div>
+          <div class="logo-label">Sobre Marrom</div>
+        </div>
+        <div class="v-divider"></div>
+        <div class="logo-block">
+          <div style="background:#FF7838; padding:16px 20px; border-radius:12px;">
+            <img src="./assets/logo.png" alt="Graviola wordmark"
+              style="height:70px; object-fit:contain; filter:brightness(0) saturate(0) invert(1);">
+          </div>
+          <div class="logo-label">Sobre Laranja</div>
+        </div>
+        <div class="v-divider"></div>
+        <div class="logo-block">
+          <img src="./assets/logo.png" alt="Graviola wordmark"
+            style="height:70px; object-fit:contain; filter:grayscale(1) brightness(0.2);">
+          <div class="logo-label">Monocromático</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════ CORES PRIMÁRIAS ══════════════════════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <span class="section-tag">Cores</span>
+      <span class="section-title">Paleta Primária</span>
+    </div>
+    <div class="page-body">
+      <div class="swatches">
+        <div class="swatch dark" style="background:#FF7838; flex:2;">
+          <div class="name">Laranja Tropicália</div>
+          <div class="hex">#FF7838</div>
+        </div>
+        <div class="swatch light" style="background:#FFF4E9; border: 1.5px solid #E5D0B4; flex:2;">
+          <div class="name">Creme / Off-white</div>
+          <div class="hex">#FFF4E9</div>
+        </div>
+        <div class="swatch light" style="background:#89C0FF; flex:1.5;">
+          <div class="name">Azul Céu</div>
+          <div class="hex">#89C0FF</div>
+        </div>
+        <div class="swatch light" style="background:#FFD05D; flex:1.5;">
+          <div class="name">Amarelo Sol</div>
+          <div class="hex">#FFD05D</div>
+        </div>
+        <div class="swatch dark" style="background:#43A574; flex:1.5;">
+          <div class="name">Verde Folha</div>
+          <div class="hex">#43A574</div>
+        </div>
+        <div class="swatch dark" style="background:#562D2A; flex:1.5;">
+          <div class="name">Marrom Terra</div>
+          <div class="hex">#562D2A</div>
+        </div>
+      </div>
+      <div class="row2">
+        <div class="swatch-sm dark" style="background:#FF9A68;">#FF9A68 Light</div>
+        <div class="swatch-sm dark" style="background:#D45A20; color:#fff;">#D45A20 Dark</div>
+        <div class="swatch-sm light" style="background:#AECFFF;">#AECFFF Light</div>
+        <div class="swatch-sm light" style="background:#FFE08A;">#FFE08A Light</div>
+        <div class="swatch-sm dark" style="background:#26814E; color:#fff;">#26814E Dark</div>
+        <div class="swatch-sm dark" style="background:#321818; color:#FFF4E9;">#321818 Deep</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════ CORES ALTERNATIVAS ══════════════════════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <span class="section-tag">Cores</span>
+      <span class="section-title">Paletas Alternativas</span>
+    </div>
+    <div class="page-body" style="background:#F2E8DF;">
+      <div class="group">
+        <div class="group-label">Noite de Verão</div>
+        <div class="alt-row">
+          <div class="alt-swatch dark" style="background:#1A3A59;">
+            <div style="font-size:10px;font-weight:700;color:#FAF9F6;">Azul Profundo · #1A3A59</div>
+          </div>
+          <div class="alt-swatch dark" style="background:#F27405;">
+            <div style="font-size:10px;font-weight:700;color:#FAF9F6;">Laranja Cítrico · #F27405</div>
+          </div>
+          <div class="alt-swatch dark" style="background:#D94177;">
+            <div style="font-size:10px;font-weight:700;color:#FAF9F6;">Rosa Tropicália · #D94177</div>
+          </div>
+          <div class="alt-swatch light" style="background:#FAF9F6; border:1.5px solid #e0dcd5;">
+            <div style="font-size:10px;font-weight:700;color:#1A1208;">Off-White · #FAF9F6</div>
+          </div>
+        </div>
+      </div>
+      <div class="group">
+        <div class="group-label">Terra e Sol</div>
+        <div class="alt-row">
+          <div class="alt-swatch dark" style="background:#A64B29;">
+            <div style="font-size:10px;font-weight:700;color:#FAF9F6;">Terracota · #A64B29</div>
+          </div>
+          <div class="alt-swatch dark" style="background:#D99101;">
+            <div style="font-size:10px;font-weight:700;color:#FAF9F6;">Ocre · #D99101</div>
+          </div>
+          <div class="alt-swatch" style="background:#6B7335;">
+            <div style="font-size:10px;font-weight:700;color:#fff;">Verde Oliva · #6B7335</div>
+          </div>
+          <div class="alt-swatch light" style="background:#FFF8E1; border:1.5px solid #e8dfc0;">
+            <div style="font-size:10px;font-weight:700;color:#1A1208;">Creme · #FFF8E1</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════ SEMANTIC TOKENS ══════════════════════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <span class="section-tag">Cores</span>
+      <span class="section-title">Semantic Color Tokens</span>
+    </div>
+    <div class="page-body">
+      <div class="tokens">
+        <div class="token" style="background:#FFF4E9; border:1.5px solid #E5D0B4; color:#562D2A;">
+          <div class="token-name">bg-primary</div>
+          <div class="token-val">--color-creme</div>
+        </div>
+        <div class="token" style="background:#FF7838; color:#FFF4E9;">
+          <div class="token-name">bg-accent</div>
+          <div class="token-val">--color-laranja</div>
+        </div>
+        <div class="token" style="background:#89C0FF; color:#562D2A;">
+          <div class="token-name">bg-cool</div>
+          <div class="token-val">--color-azul</div>
+        </div>
+        <div class="token" style="background:#FFD05D; color:#562D2A;">
+          <div class="token-name">bg-warm</div>
+          <div class="token-val">--color-amarelo</div>
+        </div>
+        <div class="token" style="background:#43A574; color:#FFF4E9;">
+          <div class="token-name">bg-nature</div>
+          <div class="token-val">--color-verde</div>
+        </div>
+        <div class="token" style="background:#562D2A; color:#FFF4E9;">
+          <div class="token-name">bg-dark</div>
+          <div class="token-val">--color-marrom</div>
+        </div>
+        <div class="token" style="background:#562D2A; color:#FFF4E9;">
+          <div class="token-name">fg-primary</div>
+          <div class="token-val">--color-marrom</div>
+        </div>
+        <div class="token" style="background:#8A5A56; color:#FFF4E9;">
+          <div class="token-name">fg-secondary</div>
+          <div class="token-val">#8A5A56</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════ TIPOGRAFIA DISPLAY ══════════════════════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <span class="section-tag">Tipografia</span>
+      <span class="section-title">Display — Lilita One</span>
+    </div>
+    <div class="page-body">
+      <div
+        style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#8A5A56;margin-bottom:12px;">
+        Display — Lilita One · Fonte Local</div>
+      <div
+        style="font-family:'Lilita One',cursive;font-size:80px;line-height:1;color:#562D2A;margin-bottom:4px;letter-spacing:-0.02em;">
+        Graviola</div>
+      <div
+        style="font-family:'Lilita One',cursive;font-size:60px;line-height:1.05;color:#FF7838;letter-spacing:-0.02em;">
+        Feira Musical</div>
+      <div
+        style="font-family:'Lilita One',cursive;font-size:44px;line-height:1.1;color:#43A574;margin-top:4px;letter-spacing:-0.02em;">
+        Cores, Sons e Sabores</div>
+      <div
+        style="font-family:'Lilita One',cursive;font-size:30px;line-height:1.15;color:#FFD05D;margin-top:4px;letter-spacing:-0.01em;">
+        Trapiche Barnabé · Salvador ✦</div>
+      <div style="height:1px;background:#E5D0B4;margin:12px 0;"></div>
+      <div style="font-size:11px;color:#8A5A56;line-height:1.5;">Lilita One — fonte display oficial. Formas
+        arredondadas, energia vibrante, lettering groovy.</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════ TIPOGRAFIA BODY ══════════════════════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <span class="section-tag">Tipografia</span>
+      <span class="section-title">Body — Montserrat</span>
+    </div>
+    <div class="page-body">
+      <div class="ty-row">
+        <div class="ty-meta">H3 · 32px · 800</div>
+        <div class="ty-specimen" style="font-size:32px;font-weight:800;letter-spacing:-0.02em;line-height:1;">ARTISTAS
+          2026</div>
+      </div>
+      <div class="ty-row">
+        <div class="ty-meta">H4 · 24px · 700</div>
+        <div class="ty-specimen" style="font-size:24px;font-weight:700;letter-spacing:-0.01em;line-height:1.1;">
+          Programação Completa</div>
+      </div>
+      <div class="ty-row">
+        <div class="ty-meta">Subtitle · 18px · 600</div>
+        <div class="ty-specimen" style="font-size:18px;font-weight:600;letter-spacing:0.01em;line-height:1.2;">Música ·
+          Artesanato · Gastronomia · Cultura</div>
+      </div>
+      <div class="ty-row">
+        <div class="ty-meta">Body · 16px · 400</div>
+        <div class="ty-specimen" style="font-size:16px;font-weight:400;line-height:1.65;color:#8A5A56;max-width:600px;">
+          A Graviola é uma feira musical brasileira que une música, arte visual e experiências presenciais com raízes na
+          cultura baiana.</div>
+      </div>
+      <div class="ty-row">
+        <div class="ty-meta">Body Italic · 16px</div>
+        <div class="ty-specimen"
+          style="font-size:16px;font-weight:400;font-style:italic;line-height:1.65;color:#8A5A56;">Pitadas de cores,
+          sons e sabores diretamente de Salvador para o seu coração.</div>
+      </div>
+      <div class="ty-row">
+        <div class="ty-meta">Label · 11px · 700</div>
+        <div class="ty-specimen"
+          style="font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#FF7838;">✦ Sua Data
+          Aqui ✦</div>
+      </div>
+      <div class="ty-row">
+        <div class="ty-meta">Caption · 10px · 500</div>
+        <div class="ty-specimen"
+          style="font-size:10px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#8A5A56;">Trapiche
+          Barnabé · Salvador, Bahia · Brasil</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════ BOTÕES ══════════════════════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <span class="section-tag">Componentes</span>
+      <span class="section-title">Botões</span>
+    </div>
+    <div class="page-body">
+      <div class="sublabel">CTAs Principais</div>
+      <div class="btn-row">
+        <button class="btn btn-primary btn-cta">Vem Viver!</button>
+        <button class="btn btn-yellow btn-cta">Garanta seu Ingresso</button>
+        <button class="btn btn-green btn-cta">Ver Programação</button>
+      </div>
+      <div class="sublabel">Secundários & Ação</div>
+      <div class="btn-row">
+        <button class="btn btn-blue">Saiba Mais</button>
+        <button class="btn btn-outline">Ver Mais</button>
+        <button class="btn btn-ghost">Da Nossa Terra</button>
+      </div>
+      <div class="sublabel">Tamanho Pequeno</div>
+      <div class="btn-row">
+        <button class="btn btn-primary btn-sm">Ingressos</button>
+        <button class="btn btn-green btn-sm">Programação</button>
+        <button class="btn btn-yellow btn-sm">Destaque</button>
+        <button class="btn btn-outline btn-sm">Ver Mais</button>
+      </div>
+      <div class="sublabel">Fundo Escuro (#321818)</div>
+      <div
+        style="background:#321818; padding:12px 16px; border-radius:8px; display:flex; gap:10px; align-items:center;">
+        <button class="btn btn-primary btn-sm btn-cta">Vem Viver!</button>
+        <button class="btn btn-sm"
+          style="background:transparent;color:#FFD05D;border:2px solid #FFD05D;border-radius:9999px;">Pitadas ✦</button>
+        <button class="btn btn-sm"
+          style="background:#43A574;color:#FFF4E9;border:2px solid #26481C;border-radius:9999px;box-shadow:3px 3px 0 #26481C;">Feira
+          Musical</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════ BADGES ══════════════════════════════ -->
+  <div class="page" style="background:#321818;">
+    <div class="page-header" style="background:#1A0A08;">
+      <span class="section-tag" style="color:rgba(255,244,233,0.4);">Componentes</span>
+      <span class="section-title">Badges & Stamps</span>
+    </div>
+    <div class="page-body" style="background:#321818;">
+      <div
+        style="font-size:8px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,244,233,0.25);margin-bottom:6px;">
+        Pills</div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:16px;">
+        <span class="pill" style="background:#FF7838;color:#FFF4E9;border-color:#D45A20;">Da Nossa Terra</span>
+        <span class="pill" style="background:#FFD05D;color:#562D2A;border-color:#D4A020;">Tropicália</span>
+        <span class="pill" style="background:#43A574;color:#FFF4E9;border-color:#26814E;">Feira Musical</span>
+        <span class="pill" style="background:#89C0FF;color:#562D2A;border-color:#4A8ED4;">Salvador · BA</span>
+        <span class="pill" style="background:transparent;color:#FFF4E9;border-color:rgba(255,244,233,0.4);">✦
+          Graviola</span>
+      </div>
+      <div
+        style="font-size:8px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,244,233,0.25);margin-bottom:6px;">
+        Washi Tapes</div>
+      <div style="display:flex;gap:12px;align-items:center;margin-bottom:16px;flex-wrap:wrap;">
+        <div class="washi-tape" style="background:#FF7838;color:#FFF4E9;transform:rotate(-2deg);">✦ Vem Viver! ✦</div>
+        <div class="washi-tape" style="background:#FFD05D;color:#562D2A;transform:rotate(1.5deg);">Pitadas de Cores
+        </div>
+        <div class="washi-tape" style="background:#43A574;color:#FFF4E9;transform:rotate(-1deg);">Trapiche Barnabé</div>
+        <div class="washi-tape" style="background:#89C0FF;color:#562D2A;transform:rotate(2deg);">✦ SSA · 2026 ✦</div>
+      </div>
+      <div
+        style="font-size:8px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,244,233,0.25);margin-bottom:10px;">
+        Selos & Hexágono</div>
+      <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
+        <div class="stamp" style="border-color:#FFD05D;">
+          <div class="s-top" style="color:#FFD05D;">Da Nossa Terra</div>
+          <div class="s-main" style="color:#FFF4E9;">2026</div>
+          <div class="s-sub" style="color:#FFD05D;">Para o Coração</div>
+        </div>
+        <div class="stamp" style="border-color:#FF7838;">
+          <div class="s-top" style="color:#FF7838;">Feira Musical</div>
+          <div class="s-main" style="color:#FFF4E9;">✦</div>
+          <div class="s-sub" style="color:#FF7838;">Graviola</div>
+        </div>
+        <div class="stamp" style="border-color:#89C0FF;">
+          <div class="s-top" style="color:#89C0FF;">Aquele Tempero</div>
+          <div class="s-main" style="color:#FFF4E9;">SSA</div>
+          <div class="s-sub" style="color:#89C0FF;">Bahia · Brasil</div>
+        </div>
+        <div class="hex-badge" style="background:#FFD05D;">
+          <span style="font-family:'Lilita One',cursive;font-size:14px;color:#562D2A;line-height:1;">Feira</span>
+          <span
+            style="font-size:8px;font-weight:800;letter-spacing:0.1em;color:#562D2A;text-transform:uppercase;">Graviola</span>
+        </div>
+        <div class="hex-badge" style="background:#FF7838;">
+          <span style="font-family:'Lilita One',cursive;font-size:14px;color:#FFF4E9;line-height:1;">2026</span>
+          <span
+            style="font-size:7px;font-weight:800;letter-spacing:0.08em;color:#FFF4E9;text-transform:uppercase;">Salvador</span>
+        </div>
+        <div
+          style="border-radius:8px;padding:8px 16px;border:2px solid #FFD05D;box-shadow:0 0 0 4px #FFD05D,0 0 0 6px #321818,0 0 0 8px #FFD05D;flex-shrink:0;">
+          <div style="font-family:'Lilita One',cursive;font-size:18px;color:#FFD05D;line-height:1;">Graviola</div>
+          <div
+            style="font-size:8px;font-weight:700;letter-spacing:0.14em;color:rgba(255,244,233,0.7);text-transform:uppercase;margin-top:3px;">
+            Feira Musical · 2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════ CARDS ══════════════════════════════ -->
+  <div class="page" style="background:#1A0E0E;">
+    <div class="page-header" style="background:#0D0808;">
+      <span class="section-tag" style="color:rgba(255,244,233,0.4);">Componentes</span>
+      <span class="section-title">Cards</span>
+    </div>
+    <div class="cards-bg">
+      <!-- ① Card Evento ──────────────────────────── -->
+      <div class="card card-evento">
+        <div class="top-stripe">
+          <img src="./assets/logo.png" alt="Graviola" style="height:38px;object-fit:contain;filter:brightness(0) invert(1);">
+          <div class="stamp">
+            <span>Feira<br>Musical</span>
+            <strong>✦</strong>
+            <span>SSA · BA</span>
+          </div>
+        </div>
+        <div class="tile-strip">
+          <div class="t" style="background-image:url('./assets/tile_banana_sol.png');"></div>
+          <div class="t" style="background-image:url('./assets/tile_citrus_folha.png');"></div>
+          <div class="t" style="background-image:url('./assets/tile_vinil_teclas.png');"></div>
+          <div class="t" style="background-image:url('./assets/pattern_tiles_correct.png');"></div>
+        </div>
+        <div class="body">
+          <div class="pretag">✦ Próxima Edição</div>
+          <div class="venue">Trapiche Barnabé<br>Salvador, Bahia</div>
+          <div class="date-badge">✦ 08.10 · 16h ✦</div>
+        </div>
+        <div class="bottom-washi">
+          <span style="color:#562D2A;font-weight:800;">Uma feira musical brasileira</span>
+        </div>
+      </div>
+
+      <!-- ② Card Torn-Paper ──────────────────────── -->
+      <div class="card card-torn">
+        <div class="patch-corner">
+          <img src="./assets/patch_coco_final.png" alt="patch">
+        </div>
+        <div class="logo-area">
+          <img src="./assets/logo.png" alt="Graviola" style="height:30px;object-fit:contain;">
+        </div>
+        <div class="washi-top">✦ Pitadas de ✦</div>
+        <div class="body">
+          <div class="pre">Cores, Sons &amp;</div>
+          <div class="title">Sabores</div>
+          <div class="values">
+            <div class="val">Música ao Vivo</div>
+            <div class="val">Artesanato</div>
+            <div class="val">Gastronomia</div>
+            <div class="val">Cultura Baiana</div>
+          </div>
+        </div>
+        <div class="tile-corner" style="background-image:url('./assets/tile_banana_sol.png');"></div>
+      </div>
+
+      <!-- ③ Card Escuro CTA ──────────────────────── -->
+      <div class="card card-dark">
+        <div class="deco-strip">
+          <img src="./assets/tile_citrus_folha.png" alt="">
+        </div>
+        <div class="green-bar">
+          <div class="label-sm">Ingressos</div>
+          <div class="badge">Garanta Já</div>
+        </div>
+        <div class="logo-patch-row">
+          <img src="./assets/logo.png" alt="Graviola" style="height:28px;object-fit:contain;filter:brightness(0) invert(1);">
+          <img class="patch-img" src="./assets/patch_sol_final.png" alt="patch sol">
+        </div>
+        <div class="body">
+          <div class="title">Vem<br><span>Viver!</span></div>
+          <div class="sub">Feira musical a céu aberto — raízes na cultura baiana.</div>
+          <div class="cta">Ingressos ✦</div>
+        </div>
+      </div>
+
+      <!-- ④ Card Produto ─────────────────────────── -->
+      <div class="card card-produto">
+        <div class="photo">
+          <div class="pattern-bg" style="background-image:url('./assets/bg_amarelo.jpg');"></div>
+          <img src="./assets/copo_220.png" alt="Copo Graviola">
+          <div class="patch-overlay">
+            <img src="./assets/patch_violao_final.png" alt="patch">
+          </div>
+        </div>
+        <div style="padding: 0 12px;">
+          <div class="washi">✦ Brinde Oficial ✦</div>
+        </div>
+        <div class="footer">
+          <div class="ftag">Coleção 2026</div>
+          <div class="ftitle">Copo Graviola</div>
+          <div class="fsub">Trapiche Barnabé · SSA</div>
+          <div class="fbtn">Quero o meu!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════ SPACING ══════════════════════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <span class="section-tag">Espaçamento</span>
+      <span class="section-title">Spacing Scale & Radius</span>
+    </div>
+    <div class="page-body">
+      <div class="label-tag">Spacing Scale — 8px Grid</div>
+      <div class="track">
+        <div class="step">
+          <div class="bar" style="height:4px;"></div>
+          <div class="step-label">–1</div>
+          <div class="step-val">4</div>
+        </div>
+        <div class="step">
+          <div class="bar" style="height:8px;"></div>
+          <div class="step-label">–2</div>
+          <div class="step-val">8</div>
+        </div>
+        <div class="step">
+          <div class="bar" style="height:12px;"></div>
+          <div class="step-label">–3</div>
+          <div class="step-val">12</div>
+        </div>
+        <div class="step">
+          <div class="bar" style="height:16px;"></div>
+          <div class="step-label">–4</div>
+          <div class="step-val">16</div>
+        </div>
+        <div class="step">
+          <div class="bar" style="height:20px;"></div>
+          <div class="step-label">–5</div>
+          <div class="step-val">20</div>
+        </div>
+        <div class="step">
+          <div class="bar" style="height:24px;"></div>
+          <div class="step-label">–6</div>
+          <div class="step-val">24</div>
+        </div>
+        <div class="step">
+          <div class="bar" style="height:32px;"></div>
+          <div class="step-label">–8</div>
+          <div class="step-val">32</div>
+        </div>
+        <div class="step">
+          <div class="bar" style="height:40px;"></div>
+          <div class="step-label">–10</div>
+          <div class="step-val">40</div>
+        </div>
+        <div class="step">
+          <div class="bar" style="height:48px;"></div>
+          <div class="step-label">–12</div>
+          <div class="step-val">48</div>
+        </div>
+        <div class="step">
+          <div class="bar" style="height:64px;"></div>
+          <div class="step-label">–16</div>
+          <div class="step-val">64</div>
+        </div>
+        <div class="step">
+          <div class="bar" style="height:80px;background:#FFD05D;outline:1.5px solid #D4A020;"></div>
+          <div class="step-label">–20</div>
+          <div class="step-val">80</div>
+        </div>
+      </div>
+      <div class="label-tag" style="margin-top:24px;">Border Radius</div>
+      <div style="display:flex;gap:14px;align-items:flex-end;margin-bottom:20px;">
+        <div>
+          <div
+            style="width:50px;height:50px;border-radius:6px;background:#FF7838;display:flex;align-items:flex-end;padding:5px;">
+            <span style="font-size:9px;font-weight:700;color:#FFF4E9;">sm 6</span></div>
+        </div>
+        <div>
+          <div
+            style="width:50px;height:50px;border-radius:12px;background:#FF7838;display:flex;align-items:flex-end;padding:5px;">
+            <span style="font-size:9px;font-weight:700;color:#FFF4E9;">md 12</span></div>
+        </div>
+        <div>
+          <div
+            style="width:50px;height:50px;border-radius:20px;background:#FF7838;display:flex;align-items:flex-end;padding:5px;">
+            <span style="font-size:9px;font-weight:700;color:#FFF4E9;">lg 20</span></div>
+        </div>
+        <div>
+          <div
+            style="width:50px;height:50px;border-radius:32px;background:#FF7838;display:flex;align-items:flex-end;padding:5px;">
+            <span style="font-size:9px;font-weight:700;color:#FFF4E9;">xl 32</span></div>
+        </div>
+        <div>
+          <div
+            style="width:90px;height:40px;border-radius:9999px;background:#FF7838;display:flex;align-items:center;justify-content:center;">
+            <span style="font-size:10px;font-weight:700;color:#FFF4E9;">pill</span></div>
+        </div>
+        <div>
+          <div
+            style="width:50px;height:50px;border-radius:50%;background:#FF7838;display:flex;align-items:center;justify-content:center;">
+            <span style="font-size:9px;font-weight:700;color:#FFF4E9;">stamp</span></div>
+        </div>
+      </div>
+      <div class="label-tag">Shadows</div>
+      <div class="shadow-row">
+        <div>
+          <div class="shadow-box" style="box-shadow:2px 2px 0px rgba(86,45,42,0.15);">
+            <div class="shadow-label">sm</div>
+          </div>
+        </div>
+        <div>
+          <div class="shadow-box" style="box-shadow:4px 4px 0px rgba(86,45,42,0.20);">
+            <div class="shadow-label">md</div>
+          </div>
+        </div>
+        <div>
+          <div class="shadow-box" style="box-shadow:6px 6px 0px rgba(86,45,42,0.25);">
+            <div class="shadow-label">lg</div>
+          </div>
+        </div>
+        <div>
+          <div class="shadow-box" style="box-shadow:3px 3px 0px #D45A20;">
+            <div class="shadow-label">orange</div>
+          </div>
+        </div>
+        <div>
+          <div class="shadow-box" style="box-shadow:inset 0 2px 6px rgba(86,45,42,0.10);">
+            <div class="shadow-label">inset</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════ PATCHES ══════════════════════════════ -->
+  <div class="page" style="background:#321818;">
+    <div class="page-header" style="background:#1A0A08;">
+      <span class="section-tag" style="color:rgba(255,244,233,0.4);">Brand</span>
+      <span class="section-title">Patches & Selos</span>
+    </div>
+    <div class="page-body" style="background:#321818;">
+      <div style="display:flex;gap:20px;align-items:center;">
+        <div class="patches-row">
+          <div class="patch-block">
+            <div style="padding:14px;display:flex;align-items:center;justify-content:center;">
+              <img src="./assets/patch_coco_final.png" alt="Patch circular coco"
+                style="height:200px;width:auto;object-fit:contain;filter:drop-shadow(0px 6px 16px rgba(0,0,0,0.65));">
+            </div>
+            <div class="patch-label">Circular · Coco</div>
+          </div>
+          <div class="patch-block">
+            <div style="padding:14px;display:flex;align-items:center;justify-content:center;">
+              <img src="./assets/patch_violao_final.png" alt="Patch retangular violão"
+                style="height:200px;width:auto;object-fit:contain;filter:drop-shadow(0px 6px 16px rgba(0,0,0,0.65));">
+            </div>
+            <div class="patch-label">Retangular · Violão</div>
+          </div>
+          <div class="patch-block">
+            <div style="padding:14px;display:flex;align-items:center;justify-content:center;">
+              <img src="./assets/patch_sol_final.png" alt="Patch hexagonal sol"
+                style="height:200px;width:auto;object-fit:contain;filter:drop-shadow(0px 6px 16px rgba(0,0,0,0.65));">
+            </div>
+            <div class="patch-label">Hexagonal · Sol</div>
+          </div>
+          <div class="patch-block">
+            <div style="padding:14px;display:flex;align-items:center;justify-content:center;">
+              <img src="./assets/patch_laranja_final.png" alt="Patch oval laranja"
+                style="height:200px;width:auto;object-fit:contain;filter:drop-shadow(0px 6px 16px rgba(0,0,0,0.65));">
+            </div>
+            <div class="patch-label">Oval · Laranja</div>
+          </div>
+        </div>
+        <div style="width:1px;height:200px;background:rgba(255,244,233,0.1);flex-shrink:0;"></div>
+        <div style="max-width:220px;">
+          <div
+            style="background:#FF7838;color:#FFF4E9;font-size:9px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;padding:3px 10px;border-radius:9999px;display:inline-block;margin-bottom:8px;">
+            Brand Collection</div>
+          <div style="font-family:'Lilita One',cursive;font-size:22px;color:#FFD05D;line-height:1;margin-bottom:8px;">
+            Patches &amp; Selos</div>
+          <div style="font-size:10px;color:rgba(255,244,233,0.55);line-height:1.6;">4 formatos em bordado artesanal
+            sobre fundo creme, com bordas costuradas características.<br><br>Circular (coco) · Retangular (violão) ·
+            Hexagonal (sol) · Oval (laranja)<br><br>Uso em camisetas, bags, brindes e materiais digitais.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════ PATTERN DESIGN ══════════════════════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <span class="section-tag">Brand</span>
+      <span class="section-title">Pattern Design</span>
+    </div>
+    <div class="page-body">
+      <div style="display:flex;gap:18px;align-items:flex-start;">
+        <div class="tiles-group">
+          <div class="tile-block-p">
+            <div class="tile-p"><img src="./assets/tile_banana_sol_v3.png" alt="Banana + Sol"></div>
+            <div class="tile-label-p">Banana · Sol</div>
+          </div>
+          <div class="tile-block-p">
+            <div class="tile-p"><img src="./assets/tile_citrus_folha_v3.png" alt="Citrus + Folha"></div>
+            <div class="tile-label-p">Citrus · Folha</div>
+          </div>
+          <div class="tile-block-p">
+            <div class="tile-p"><img src="./assets/tile_vinil_teclas.png" alt="Vinil + Teclas"></div>
+            <div class="tile-label-p">Vinil · Teclas</div>
+          </div>
+          <div class="tile-block-p">
+            <div class="tile-p"><img src="./assets/pattern_tiles_correct.png" alt="Coco + Violão"></div>
+            <div class="tile-label-p">Coco · Violão</div>
+          </div>
+        </div>
+        <div style="width:1px;background:#E5D0B4;align-self:stretch;flex-shrink:0;"></div>
+        <div style="display:flex;flex-direction:column;gap:6px;flex-shrink:0;">
+          <div
+            style="font-size:8px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#8A5A56;margin-bottom:4px;">
+            Elementos</div>
+          <div style="display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;">
+            <div class="tile-block-p">
+              <div
+                style="width:54px;height:54px;border-radius:50%;overflow:hidden;border:1.5px solid rgba(0,0,0,0.08);box-shadow:1px 1px 4px rgba(0,0,0,0.1);">
+                <img src="./assets/pattern_citrus_slice.png" alt="Citrus"
+                  style="width:100%;height:100%;object-fit:contain;">
+              </div>
+              <div class="tile-label-p">Citrus</div>
+            </div>
+            <div class="tile-block-p">
+              <div
+                style="width:54px;height:68px;border-radius:5px;overflow:hidden;border:1.5px solid rgba(0,0,0,0.08);box-shadow:1px 1px 4px rgba(0,0,0,0.1);">
+                <img src="./assets/pattern_folha.png" alt="Folha" style="width:100%;height:100%;object-fit:contain;">
+              </div>
+              <div class="tile-label-p">Folha</div>
+            </div>
+            <div class="tile-block-p">
+              <div
+                style="width:36px;height:68px;border-radius:5px;overflow:hidden;border:1.5px solid rgba(0,0,0,0.08);box-shadow:1px 1px 4px rgba(0,0,0,0.1);">
+                <img src="./assets/pattern_cavalete.png" alt="Cavalete"
+                  style="width:100%;height:100%;object-fit:contain;">
+              </div>
+              <div class="tile-label-p">Cavalete</div>
+            </div>
+            <div class="tile-block-p">
+              <div
+                style="width:68px;height:36px;border-radius:5px;overflow:hidden;border:1.5px solid rgba(0,0,0,0.08);box-shadow:1px 1px 4px rgba(0,0,0,0.1);">
+                <img src="./assets/pattern_jornal_rasgado.png" alt="Jornal"
+                  style="width:100%;height:100%;object-fit:contain;">
+              </div>
+              <div class="tile-label-p">Jornal</div>
+            </div>
+          </div>
+        </div>
+        <div style="width:1px;background:#E5D0B4;align-self:stretch;flex-shrink:0;"></div>
+        <div style="display:flex;flex-direction:column;gap:5px;max-width:150px;justify-content:center;">
+          <div
+            style="background:#FF7838;color:#FFF4E9;font-size:9px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;padding:2px 8px;border-radius:9999px;display:inline-block;">
+            Padrão Repeat</div>
+          <div style="font-family:'Lilita One',cursive;font-size:18px;color:#562D2A;line-height:1.1;">Tropical Pattern
+          </div>
+          <div style="font-size:9px;color:#8A5A56;line-height:1.4;">4 tiles 242×481px — ilustrações pop-art flat em
+            fundos nas cores da marca.</div>
+          <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:5px;">
+            <div style="width:12px;height:12px;border-radius:2px;background:#2D5A1E;"></div>
+            <div style="width:12px;height:12px;border-radius:2px;background:#D63C2F;"></div>
+            <div style="width:12px;height:12px;border-radius:2px;background:#FFD05D;"></div>
+            <div style="width:12px;height:12px;border-radius:2px;background:#89C0FF;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════ TEXTURAS ══════════════════════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <span class="section-tag">Brand</span>
+      <span class="section-title">Texturas & Backgrounds</span>
+    </div>
+    <div class="page-body">
+      <div class="label-tag">Backgrounds</div>
+      <div class="bg-row">
+        <div class="bg-tile"><img src="./assets/bg_amarelo.jpg" alt="Amarelo">
+          <div class="bg-tile-label">Amarelo Sol</div>
+        </div>
+        <div class="bg-tile"><img src="./assets/bg_azul.jpg" alt="Azul">
+          <div class="bg-tile-label">Azul Céu</div>
+        </div>
+        <div class="bg-tile"><img src="./assets/bg_verde.png" alt="Verde">
+          <div class="bg-tile-label">Verde Folha</div>
+        </div>
+        <div class="bg-tile"><img src="./assets/bg_vermelho.jpg" alt="Vermelho">
+          <div class="bg-tile-label">Vermelho</div>
+        </div>
+        <div class="bg-tile"><img src="./assets/bg_papel.jpg" alt="Papel">
+          <div class="bg-tile-label" style="color:rgba(86,45,42,0.9);text-shadow:none;">Papel</div>
+        </div>
+      </div>
+      <div class="label-tag" style="margin-top:14px;">Texturas & Elementos</div>
+      <div class="tex-row">
+        <div class="tex-tile"><img src="./assets/pattern_jornal_rasgado.png" alt="Jornal Rasgado">
+          <div
+            style="position:absolute;bottom:5px;left:7px;font-size:8px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#562D2A;">
+            Jornal Rasgado</div>
+        </div>
+        <div class="tex-tile"><img src="./assets/pattern_papel.png" alt="Papel">
+          <div
+            style="position:absolute;bottom:5px;left:7px;font-size:8px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#562D2A;">
+            Papel Kraft</div>
+        </div>
+        <div class="tex-tile"><img src="./assets/texture_torn_paper.png" alt="Papel Rasgado">
+          <div
+            style="position:absolute;bottom:5px;left:7px;font-size:8px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#562D2A;">
+            Borda Rasgada</div>
+        </div>
+        <div class="tex-tile"><img src="./assets/pattern_main_strip.png" alt="Faixa">
+          <div
+            style="position:absolute;bottom:5px;left:7px;font-size:8px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#562D2A;">
+            Faixa Tropical</div>
+        </div>
+      </div>
+      <div class="label-tag" style="margin-top:14px;">Washi Tapes</div>
+      <div class="washi-row">
+        <div class="washi-strip"
+          style="background:repeating-linear-gradient(-45deg,#FF7838,#FF7838 4px,#FFF4E9 4px,#FFF4E9 10px);"></div>
+        <div class="washi-strip"
+          style="background:repeating-linear-gradient(-45deg,#43A574,#43A574 4px,#FFF4E9 4px,#FFF4E9 10px);"></div>
+        <div class="washi-strip"
+          style="background:repeating-linear-gradient(-45deg,#89C0FF,#89C0FF 4px,#FFF4E9 4px,#FFF4E9 10px);"></div>
+        <div class="washi-strip"
+          style="background:repeating-linear-gradient(-45deg,#FFD05D,#FFD05D 4px,#FFF4E9 4px,#FFF4E9 10px);"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════ DOS & DON'TS ══════════════════════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <span class="section-tag">Brand</span>
+      <span class="section-title">Dos & Don'ts</span>
+    </div>
+    <div class="page-body">
+      <div class="dd-grid">
+        <div class="dd-col" style="background:#43A574;">
+          <div class="dd-col-label" style="color:#FFF4E9;">
+            <div
+              style="width:22px;height:22px;border-radius:50%;background:#FFF4E9;color:#43A574;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;">
+              ✓</div>
+            O que fazer
+          </div>
+          <div class="dd-rule">
+            <div class="dd-dot" style="background:#FFD05D;"></div>
+            <div class="dd-text" style="color:#FFF4E9;"><strong style="color:#FFD05D;">Use a paleta oficial</strong> —
+              Aplique sempre as cores definidas neste guia.</div>
+          </div>
+          <div class="dd-rule">
+            <div class="dd-dot" style="background:#FFD05D;"></div>
+            <div class="dd-text" style="color:#FFF4E9;"><strong style="color:#FFD05D;">Siga a direção de imagem</strong>
+              — Fotografias e ilustrações que reflectem a estética da Graviola.</div>
+          </div>
+          <div class="dd-rule">
+            <div class="dd-dot" style="background:#FFD05D;"></div>
+            <div class="dd-text" style="color:#FFF4E9;"><strong style="color:#FFD05D;">Consistência tipográfica</strong>
+              — Lilita One para títulos, Montserrat para tudo mais.</div>
+          </div>
+          <div class="dd-rule">
+            <div class="dd-dot" style="background:#FFD05D;"></div>
+            <div class="dd-text" style="color:#FFF4E9;"><strong style="color:#FFD05D;">Comunique com coerência</strong>
+              — Mensagem sempre alinhada aos valores da marca.</div>
+          </div>
+        </div>
+        <div class="dd-col" style="background:#562D2A;">
+          <div class="dd-col-label" style="color:#FFF4E9;">
+            <div
+              style="width:22px;height:22px;border-radius:50%;background:#FF7838;color:#FFF4E9;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;">
+              ✕</div>
+            O que evitar
+          </div>
+          <div class="dd-rule">
+            <div class="dd-dot" style="background:#FF7838;"></div>
+            <div class="dd-text" style="color:rgba(255,244,233,0.85);"><strong style="color:#FF7838;">Não altere o
+                logo</strong> — Sem distorção, recoloração ou modificação não autorizada.</div>
+          </div>
+          <div class="dd-rule">
+            <div class="dd-dot" style="background:#FF7838;"></div>
+            <div class="dd-text" style="color:rgba(255,244,233,0.85);"><strong style="color:#FF7838;">Não use cores fora
+                da paleta</strong> — Apenas as cores definidas na identidade visual.</div>
+          </div>
+          <div class="dd-rule">
+            <div class="dd-dot" style="background:#FF7838;"></div>
+            <div class="dd-text" style="color:rgba(255,244,233,0.85);"><strong style="color:#FF7838;">Não misture
+                elementos indevidos</strong> — Use os gráficos de forma consistente.</div>
+          </div>
+          <div class="dd-rule">
+            <div class="dd-dot" style="background:#FF7838;"></div>
+            <div class="dd-text" style="color:rgba(255,244,233,0.85);"><strong style="color:#FF7838;">Não use mensagens
+                contraditórias</strong> — Evite comunicações que obscureçam a identidade.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════ BRAND VOICE ══════════════════════════════ -->
+  <div class="page" style="background:#562D2A;">
+    <div class="page-header" style="background:#3B1A18;">
+      <span class="section-tag" style="color:rgba(255,244,233,0.4);">Brand</span>
+      <span class="section-title">Voz & Tom</span>
+    </div>
+    <div class="voice-frame">
+      <div class="voice-left">
+        <div class="voice-eyebrow">Brand Voice</div>
+        <div class="voice-title">Voz<br>&amp;<br>Tom</div>
+      </div>
+      <div class="voice-right">
+        <div class="voice-principle">
+          <div class="voice-dot"></div>
+          <div class="voice-text"><strong>Calorosa e popular</strong> — Fala como quem convida para um encontro cheio de
+            arte e ritmo.</div>
+        </div>
+        <div class="voice-principle">
+          <div class="voice-dot"></div>
+          <div class="voice-text"><strong>Brasileira de verdade</strong> — Valoriza expressões e referências culturais
+            vivas, sem afetação.</div>
+        </div>
+        <div class="voice-principle">
+          <div class="voice-dot"></div>
+          <div class="voice-text"><strong>Leve e com atitude</strong> — Mistura leveza, ritmo e uma pitada de
+            personalidade.</div>
+        </div>
+        <div class="voice-principle">
+          <div class="voice-dot"></div>
+          <div class="voice-text"><strong>Nunca fria ou corporativa</strong> — Próxima, autêntica, sempre reforçando
+            experiência e brasilidade.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════ BRAND APPLICATIONS ══════════════════════════════ -->
+  <div class="page">
+    <div class="page-header">
+      <span class="section-tag">Brand</span>
+      <span class="section-title">Aplicações da Marca</span>
+    </div>
+    <div class="page-body">
+      <div class="app-grid">
+        <div class="app-block">
+          <div class="app-img" style="width:70px;height:100px;">
+            <img src="./assets/copo_220.png" alt="Copo" style="object-fit:cover;width:100%;height:100%;">
+          </div>
+          <div class="app-label">Copo</div>
+        </div>
+        <div class="app-block">
+          <div class="app-img" style="width:200px;height:100px;">
+            <img src="./assets/pulseira_220.png" alt="Pulseira" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="app-label">Pulseira</div>
+        </div>
+        <div class="app-block">
+          <div class="app-img" style="width:160px;height:100px;">
+            <img src="./assets/brand_app_lambe_lambe.jpg" alt="Lambe-lambe OOH"
+              style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="app-label">Lambe-lambe / OOH</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════ SOCIAL MEDIA BASE ══════════════════════════════ -->
+  <div class="page" style="background:#562D2A;">
+    <div class="page-header" style="background:#3B1A18;">
+      <span class="section-tag" style="color:rgba(255,244,233,0.4);">Brand</span>
+      <span class="section-title">Social Media — Base Templates</span>
+    </div>
+    <div class="social-base-bg">
+      <div
+        style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,244,233,0.5);margin-bottom:12px;">
+        Social Media — Base Templates</div>
+      <div style="display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap;">
+        <div class="t-block">
+          <div class="t-img" style="width:90px;height:90px;"><img src="./assets/template_social_1a.jpg"
+              alt="Template 01" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          <div class="t-label">01</div>
+        </div>
+        <div class="t-block">
+          <div class="t-img" style="width:90px;height:90px;"><img src="./assets/template_social_1b.jpg"
+              alt="Template 02" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          <div class="t-label">02</div>
+        </div>
+        <div class="t-block">
+          <div class="t-img" style="width:90px;height:90px;"><img src="./assets/template_social_2a.jpg"
+              alt="Template 03" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          <div class="t-label">03</div>
+        </div>
+        <div class="t-block">
+          <div class="t-img" style="width:90px;height:90px;"><img src="./assets/template_social_2b.jpg"
+              alt="Template 04" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          <div class="t-label">04</div>
+        </div>
+        <div class="t-block">
+          <div class="t-img" style="width:90px;height:90px;"><img src="./assets/template_social_3a.jpg"
+              alt="Template 05" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          <div class="t-label">05</div>
+        </div>
+        <div class="t-block">
+          <div class="t-img" style="width:90px;height:90px;"><img src="./assets/template_social_3b.jpg"
+              alt="Template 06" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          <div class="t-label">06</div>
+        </div>
+        <div style="width:1px;background:rgba(255,244,233,0.15);align-self:stretch;flex-shrink:0;"></div>
+        <div style="max-width:200px;">
+          <div
+            style="background:#FF7838;color:#FFF4E9;font-size:9px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;padding:2px 9px;border-radius:9999px;display:inline-block;margin-bottom:6px;">
+            Social Media</div>
+          <div style="font-family:'Lilita One',cursive;font-size:20px;color:#FFD05D;line-height:1;margin-bottom:6px;">
+            Base Templates</div>
+          <div style="font-size:10px;color:rgba(255,244,233,0.6);line-height:1.5;">6 variações de post (1:1) para redes
+            sociais. Colagem editorial com elementos da marca.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════ SOCIAL POST PREVIEW ══════════════════════════════ -->
+  <div class="page" style="background:#321818;">
+    <div class="page-header" style="background:#1A0A08;">
+      <span class="section-tag" style="color:rgba(255,244,233,0.4);">Componentes</span>
+      <span class="section-title">Social Post Preview</span>
+    </div>
+    <div class="social-bg">
+      <div
+        style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,244,233,0.4);margin-bottom:12px;">
+        Social Post Preview</div>
+      <div class="social-row">
+        <div class="post-frame">
+          <div class="post-header">
+            <div class="post-avatar">G</div>
+            <div class="post-handle">@festagraviola</div>
+          </div>
+          <div class="post-img" style="width:100px;height:100px;"><img src="./assets/template_social_1a.jpg"
+              alt="Post 1" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          <div class="post-actions"><span class="post-action">♡ 342</span><span class="post-action">↻ 87</span></div>
+        </div>
+        <div class="post-frame">
+          <div class="post-header">
+            <div class="post-avatar">G</div>
+            <div class="post-handle">@festagraviola</div>
+          </div>
+          <div class="post-img" style="width:100px;height:100px;"><img src="./assets/template_social_2a.jpg"
+              alt="Post 2" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          <div class="post-actions"><span class="post-action">♡ 512</span><span class="post-action">↻ 134</span></div>
+        </div>
+        <div class="post-frame">
+          <div class="post-header">
+            <div class="post-avatar">G</div>
+            <div class="post-handle">@festagraviola</div>
+          </div>
+          <div class="post-img" style="width:100px;height:100px;"><img src="./assets/template_social_3a.jpg"
+              alt="Post 3" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          <div class="post-actions"><span class="post-action">♡ 289</span><span class="post-action">↻ 61</span></div>
+        </div>
+        <div class="post-frame">
+          <div class="post-header">
+            <div class="post-avatar">G</div>
+            <div class="post-handle">@festagraviola</div>
+          </div>
+          <div class="post-img" style="width:100px;height:100px;"><img src="./assets/template_social_1b.jpg"
+              alt="Post 1B" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          <div class="post-actions"><span class="post-action">♡ 198</span><span class="post-action">↻ 43</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
